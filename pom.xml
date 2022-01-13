@@ -6,7 +6,9 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>br.dev.multicode</groupId>
   <artifactId>mc-games</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <description>Multicode Games</description>
+  <version>1.0.0</version>
+
   <properties>
     <compiler-plugin.version>3.8.1</compiler-plugin.version>
     <maven.compiler.release>11</maven.compiler.release>
@@ -17,6 +19,7 @@
     <quarkus.platform.version>2.6.2.Final</quarkus.platform.version>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
   </properties>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -28,11 +31,38 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+
   <dependencies>
+    <!-- Hibernate ORM specific dependencies -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-hibernate-orm-panache</artifactId>
+    </dependency>
+
+    <!-- JDBC driver dependencies -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-jdbc-postgresql</artifactId>
+    </dependency>
+
+    <!-- Liquibase -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-liquibase</artifactId>
+    </dependency>
+
+    <!-- JSONB serialize JSON -->
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-resteasy-jsonb</artifactId>
     </dependency>
+
+    <!-- Config YAML -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-config-yaml</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-arc</artifactId>
@@ -41,6 +71,8 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-resteasy</artifactId>
     </dependency>
+
+    <!-- TESTS -->
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-junit5</artifactId>
@@ -52,6 +84,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
   <build>
     <plugins>
       <plugin>
