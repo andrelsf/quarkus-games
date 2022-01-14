@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  postgres:
+  postgresql:
     image: postgres:13.3-alpine
     container_name: "quarkus-games-psql"
     ports:
@@ -9,4 +9,4 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: games
+      POSTGRES_DB: mcgames-dev
