@@ -11,10 +11,10 @@ quarkus:
     password: postgres
   hibernate-orm:
     database:
-      generation: drop-and-create
+      generation: none
   liquibase:
     migrate-at-start: true
-    change-log: "classpath:db/liquibase-changelog.yml"
+    change-log: "classpath:liquibase/changelog.yml"
   log:
     console:
       enable: true
