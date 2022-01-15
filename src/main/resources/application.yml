@@ -1,4 +1,5 @@
 quarkus:
+  profile: dev
   application:
     name: mcgames
   http:
