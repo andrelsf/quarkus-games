@@ -3,14 +3,13 @@ package br.dev.multicode.repositories;
 import br.dev.multicode.api.http.requests.GameRequest;
 import br.dev.multicode.api.http.requests.PatchGameRequest;
 import br.dev.multicode.entities.Game;
+import br.dev.multicode.exceptions.GameException;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import io.quarkus.panache.common.Parameters;
 import java.util.Optional;
 import java.util.UUID;
 import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.PersistenceException;
 import javax.transaction.Transactional;
-import javax.ws.rs.NotFoundException;
 
 @ApplicationScoped
 public class GameRepository implements PanacheRepository<Game> {
@@ -20,13 +19,13 @@ public class GameRepository implements PanacheRepository<Game> {
   {
     Optional.ofNullable(game)
         .ifPresentOrElse(this::persistAndFlush,
-            () -> { throw new PersistenceException("Failed to save game."); });
+            () -> { throw new GameException.PersistenceException("Failed to save game."); });
   }
 
   public Game findGameById(UUID gameId) {
     return find("game_id=:gameId", Parameters.with("gameId", gameId.toString())).firstResultOptional()
         .orElseThrow(() ->
-            new NotFoundException("Game not found by id::".concat(gameId.toString())));
+            new GameException.NotFoundException("Game not found by id::".concat(gameId.toString())));
   }
 
   @Transactional
