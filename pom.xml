@@ -58,6 +58,18 @@
       <artifactId>quarkus-resteasy-jsonb</artifactId>
     </dependency>
 
+    <!-- Jagger Tracing -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-opentracing</artifactId>
+    </dependency>
+
+    <!-- OpenTracing JDBC -->
+    <dependency>
+      <groupId>io.opentracing.contrib</groupId>
+      <artifactId>opentracing-jdbc</artifactId>
+    </dependency>
+
     <!-- Config YAML -->
     <dependency>
       <groupId>io.quarkus</groupId>
