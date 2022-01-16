@@ -7,7 +7,8 @@ quarkus:
   datasource:
     db-kind: postgresql
     jdbc:
-      url: jdbc:postgresql://localhost:5432/mcgames-dev
+      url: jdbc:tracing:postgresql://localhost:5432/mcgames-dev
+      driver: io.opentracing.contrib.jdbc.TracingDriver
     username: postgres
     password: postgres
   hibernate-orm:
@@ -16,6 +17,13 @@ quarkus:
   liquibase:
     migrate-at-start: true
     change-log: "classpath:liquibase/changelog.yml"
+  jaeger:
+    enabled: true
+    service-name: ${quarkus.application.name}-${quarkus.profile}
+    reporter-log-spans: false
+    endpoint: http://localhost:14268/api/traces
+    sampler-type: const
+    sampler-param: 1
   log:
     console:
       enable: true
