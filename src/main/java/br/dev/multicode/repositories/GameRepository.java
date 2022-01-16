@@ -38,8 +38,7 @@ public class GameRepository implements PanacheRepository<Game> {
   @Transactional
   public void delete(UUID gameId)
   {
-    final Game game = this.findGameById(gameId);
-    this.delete(game);
+    this.delete("game_id=:gameId", Parameters.with("gameId", gameId.toString()));
   }
 
   @Transactional
