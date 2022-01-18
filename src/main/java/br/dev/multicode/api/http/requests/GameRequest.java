@@ -1,5 +1,6 @@
 package br.dev.multicode.api.http.requests;
 
+import br.dev.multicode.api.http.validators.constraints.ValueOfEnum;
 import br.dev.multicode.entities.Platform;
 import javax.validation.constraints.NotBlank;
 import lombok.Data;
@@ -13,6 +14,7 @@ public class GameRequest {
   @NotBlank
   private String description;
 
-  private Platform platform;
+  @ValueOfEnum(enumClass = Platform.class)
+  private String platform;
 
 }

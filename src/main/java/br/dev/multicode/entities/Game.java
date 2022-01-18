@@ -60,7 +60,7 @@ public class Game extends PanacheEntityBase {
     return Game.builder()
         .name(postGameRequest.getName())
         .description(postGameRequest.getDescription())
-        .platform(postGameRequest.getPlatform())
+        .platform(Platform.valueOf(postGameRequest.getPlatform()))
         .build();
   }
 
@@ -68,7 +68,7 @@ public class Game extends PanacheEntityBase {
   {
     setName(gameRequest.getName());
     setDescription(gameRequest.getDescription());
-    setPlatform(gameRequest.getPlatform());
+    setPlatform(Platform.valueOf(gameRequest.getPlatform()));
   }
 
   public void fillWith(PatchGameRequest patchGameRequest)
