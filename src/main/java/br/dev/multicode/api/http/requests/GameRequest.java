@@ -1,16 +1,16 @@
 package br.dev.multicode.api.http.requests;
 
 import br.dev.multicode.entities.Platform;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
 public class GameRequest {
 
-  @NotEmpty
+  @NotBlank
   private String name;
 
-  @NotEmpty
+  @NotBlank
   private String description;
 
   private Platform platform;
