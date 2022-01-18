@@ -1,8 +1,9 @@
-package br.dev.multicode.exceptions;
+package br.dev.multicode.exceptions.handlers;
 
 import static br.dev.multicode.exceptions.ErrorMessage.GAME_NOT_FOUND;
 import static br.dev.multicode.exceptions.ErrorMessage.OOPS;
 
+import br.dev.multicode.exceptions.GameException;
 import io.vertx.core.json.JsonObject;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
