@@ -2,6 +2,8 @@ quarkus:
   profile: dev
   application:
     name: mcgames
+  banner:
+    enabled: false
   http:
     port: 8090
   datasource:
