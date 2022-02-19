@@ -64,6 +64,17 @@
       <artifactId>quarkus-hibernate-validator</artifactId>
     </dependency>
 
+    <!-- Redis Client -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-redis-client</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-cache</artifactId>
+    </dependency>
+
     <!-- Jagger Tracing -->
     <dependency>
       <groupId>io.quarkus</groupId>

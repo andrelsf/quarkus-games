@@ -2,6 +2,8 @@ quarkus:
   profile: dev
   application:
     name: mcgames
+  shutdown:
+    timeout: 5
   banner:
     enabled: false
   http:
@@ -26,6 +28,11 @@ quarkus:
     endpoint: http://localhost:14268/api/traces
     sampler-type: const
     sampler-param: 1
+  redis:
+    hosts: redis://localhost:6379
+    client-type: standalone
+    max-pool-size: 12
+    max-pool-waiting: 64
   log:
     console:
       enable: true
