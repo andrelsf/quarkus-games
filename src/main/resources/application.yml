@@ -1,20 +1,20 @@
 quarkus:
-  profile: dev
+  profile: ${QUARKUS_PROFILE:dev}
   application:
-    name: mcgames
+    name: ${QUARKUS_APP_NAME:mcgames}
   shutdown:
     timeout: 5
   banner:
     enabled: false
   http:
-    port: 8090
+    port: ${QUARKUS_HTTP_PORT:8090}
   datasource:
-    db-kind: postgresql
+    db-kind: ${QUARKUS_DATASOURCE_KIND:postgresql}
     jdbc:
-      url: jdbc:tracing:postgresql://localhost:5432/mcgames-dev
-      driver: io.opentracing.contrib.jdbc.TracingDriver
-    username: postgres
-    password: postgres
+      url: ${QUARKUS_DATASOURCE_JDBC_URL:jdbc:tracing:postgresql://localhost:5432/mcgames-dev}
+      driver: ${QUARKUS_DATASOURCE_JDBC_DRIVER:io.opentracing.contrib.jdbc.TracingDriver}
+    username: ${QUARKUS_DATASOURCE_USERNAME:postgres}
+    password: ${QUARKUS_DATASOURCE_PASSWORD:postgres}
   hibernate-orm:
     database:
       generation: none
@@ -22,10 +22,10 @@ quarkus:
     migrate-at-start: true
     change-log: "classpath:liquibase/changelog.yml"
   jaeger:
-    enabled: true
+    enabled: ${QUARKUS_JEAGER_ENABLED:true}
     service-name: ${quarkus.application.name}-${quarkus.profile}
     reporter-log-spans: false
-    endpoint: http://localhost:14268/api/traces
+    endpoint: ${QUARKUS_JEAGER_ENDPOINT:http://localhost:14268/api/traces}
     sampler-type: const
     sampler-param: 1
   redis:
