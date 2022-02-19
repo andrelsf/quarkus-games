@@ -3,10 +3,14 @@ package br.dev.multicode.services.impl;
 import br.dev.multicode.api.http.requests.GameRequest;
 import br.dev.multicode.api.http.requests.PatchGameRequest;
 import br.dev.multicode.api.http.responses.GameResponse;
+import br.dev.multicode.api.interceptor.LogEvent;
 import br.dev.multicode.entities.Game;
 import br.dev.multicode.repositories.GameRepository;
 import br.dev.multicode.services.GameService;
+import io.quarkus.panache.common.Page;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
@@ -17,6 +21,15 @@ public class GameServiceImpl implements GameService {
   GameRepository gameRepository;
 
   @Override
+  public List<GameResponse> findAll(Page page) {
+    return gameRepository.list(page)
+        .stream()
+        .map(GameResponse::of)
+        .collect(Collectors.toList());
+  }
+
+  @Override
+  @LogEvent
   public void create(GameRequest postGameRequest)
   {
     gameRepository.save(Game.of(postGameRequest));

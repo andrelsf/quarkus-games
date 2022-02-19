@@ -3,11 +3,15 @@ package br.dev.multicode.api.resources;
 import br.dev.multicode.api.http.requests.GameRequest;
 import br.dev.multicode.api.http.requests.PatchGameRequest;
 import br.dev.multicode.services.GameService;
+import io.quarkus.panache.common.Page;
 import java.util.UUID;
 import javax.inject.Inject;
 import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
@@ -15,6 +19,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -32,6 +37,16 @@ public class GameResource {
   {
     gameService.create(postGameRequest);
     return Response.status(Status.CREATED).build();
+  }
+
+  @GET
+  public Response getAllGames(
+    @QueryParam("offset") @DefaultValue("0") @Min(0) int offset,
+    @QueryParam("limit") @DefaultValue("10") @Max(20) int limit)
+  {
+    Page page = Page.of(offset, limit);
+    return Response.ok(gameService.findAll(page))
+        .build();
   }
 
   @GET
