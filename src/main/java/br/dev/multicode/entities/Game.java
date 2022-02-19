@@ -6,6 +6,7 @@ import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
 import br.dev.multicode.api.http.requests.GameRequest;
 import br.dev.multicode.api.http.requests.PatchGameRequest;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,10 +50,15 @@ public class Game extends PanacheEntityBase {
   @Column(nullable = false, length = 20)
   private Platform platform;
 
+  @Column(nullable = false)
+  private BigDecimal price;
+
   @CreationTimestamp
+  @Column(name = "created_at")
   private ZonedDateTime createdAt;
 
   @UpdateTimestamp
+  @Column(name = "updated_at")
   private ZonedDateTime updatedAt;
 
   public static Game of(GameRequest postGameRequest)
@@ -61,6 +67,7 @@ public class Game extends PanacheEntityBase {
         .name(postGameRequest.getName())
         .description(postGameRequest.getDescription())
         .platform(Platform.valueOf(postGameRequest.getPlatform()))
+        .price(postGameRequest.getPrice())
         .build();
   }
 
@@ -69,6 +76,7 @@ public class Game extends PanacheEntityBase {
     setName(gameRequest.getName());
     setDescription(gameRequest.getDescription());
     setPlatform(Platform.valueOf(gameRequest.getPlatform()));
+    setPrice(gameRequest.getPrice());
   }
 
   public void fillWith(PatchGameRequest patchGameRequest)
@@ -76,5 +84,6 @@ public class Game extends PanacheEntityBase {
     setName(defaultIfBlank(patchGameRequest.getName(), getName()));
     setDescription(defaultIfBlank(patchGameRequest.getDescription(), getDescription()));
     setPlatform(defaultIfNull(patchGameRequest.getPlatform(), getPlatform()));
+    setPrice(defaultIfNull(patchGameRequest.getPrice(), getPrice()));
   }
 }

@@ -1,6 +1,7 @@
 package br.dev.multicode.api.http.requests;
 
 import br.dev.multicode.entities.Platform;
+import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,5 +16,6 @@ public class PatchGameRequest {
   private String name;
   private String description;
   private Platform platform;
+  private BigDecimal price;
 
 }
