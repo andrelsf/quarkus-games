@@ -47,7 +47,10 @@ Or, if you don't have GraalVM installed, you can run the native executable build
 using:
 
 ```shell script
-./mvnw package -Pnative -Dquarkus.native.container-build=true
+mvn clean package -Pnative -Dquarkus.native.container-build=true
+docker build -t andredevlinux/quarkus-mc-games:1.0.0 -f src/main/docker/Dockerfile.native .
+docker login -u andredevlinux
+docker push andredevlinux/quarkus-mc-games:1.0.0
 ```
 
 You can then execute your native executable with: `./target/mc-games-1.0-SNAPSHOT-runner`
